@@ -1,4 +1,5 @@
 venv/
 .env
 output_action/
-app/routers/__pycache__/
+__pycache__/
+*.pyc

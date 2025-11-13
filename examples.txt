@@ -1,0 +1,12 @@
+
+For local repo:
+curl -X POST "http://127.0.0.1:8000/api/scan-repo" \
+  -H "Content-Type: application/json" \
+  -d '{"repo_path": "/Users/kshitijdani/Desktop/UW/Fall 2025/IMT 555 Cyber/sum-24-uw-cybersec-huskey-manager/webapp/public/users"}'
+
+
+For public github repo:
+curl -X POST "http://127.0.0.1:8000/api/scan-github" \
+  -H "Content-Type: application/json" \
+  -d '{"repo_url": "https://github.com/uw-areifers/sum-24-uw-cybersec-huskey-manager"}' | jq                                       
+

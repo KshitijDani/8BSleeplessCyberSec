@@ -16,7 +16,7 @@ Your task:
    - switch ($action) { ... }
    - if ($action === '...') or similar
 3. For each action, produce a synthetic route in the format:
-   "<filename>: <action_name>"
+   "<filename>: <action_name1>, <action_name2>,..."
 4. Return ONLY a JSON array.
 5. Do NOT include explanations, comments, or extra text.
 6. If no actions exist, return [].
@@ -26,9 +26,7 @@ Example:
 If the file is 'users.php' and contains actions 'add_user', 'edit_user', and 'delete_user', output:
 
 [
-  "users.php: add_user",
-  "users.php: edit_user",
-  "users.php: delete_user"
+  "users.php: add_user, edit_user, delete_user",
 ]
 """
 
@@ -41,7 +39,7 @@ class CyberAgent:
         print("inside run of CyberAgent\n")
         print("Here is the query to call gpt", query)
         response = self.client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5",#"gpt-4o-mini",
             messages=[
                 {"role": "system", "content": (
                     "You are a cybersecurity analysis agent. "
@@ -56,7 +54,7 @@ class CyberAgent:
     def extract_routes(self, file_name, file_content: str) -> str:
         print("Extracting routes for: ", file_name)
         response = self.client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5",#"gpt-4o-mini",
             messages=[
                 {
                     "role": "system",
