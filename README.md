@@ -1,4 +1,9 @@
-# 8BSleeplessCyberSec
+# 8BSleeplessCyberSec Agent
+
+Current State: The purpose of this code is to help me understand how to build an AI Agent. The agent uses OpenAI's Completions API to make calls to a gpt-4o-mini LLM model. In the app itself, we either pass the path of a local repo or the link to a publically accessible github repo. The app then parses all php files in the repo and fetches all endpoints. It the stores the endpoints in an output file. to view the latest run's endpoints goto http://127.0.0.1:8000/api/latest-routes.
+
+Next State: understand what exactly is required to call the endpoints we've extracted and call them while the targeted app is running. Then try to find and test any vulnerabilities in the app.
+
 
 *run uvicorn app.main:app --reload to start the app from the root directory.
 
