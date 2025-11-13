@@ -1,2 +1,4 @@
 venv/
 .env
+output_action/
+app/routers/__pycache__/
