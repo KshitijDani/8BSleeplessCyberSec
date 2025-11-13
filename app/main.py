@@ -1,15 +1,18 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
+import os
+from app.routers import hello, purpose
 
 app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": "Hello from FastAPI"}
+    secret = os.getenv("MY_SECRET_TEST", "not set")
+    return {"message": "Hello from FastAPI" + secret}
 
 @app.get("/test")
 def test():
     return {"my first test API in a long time"}
 
-@app.get("/purpose")
-def purpose():
-    return {"The purpose of this app is to help me stay in touch with coding, progress on my cybersecurity skills and learn to build AI agents from scratch"}
+app.include_router(hello.router, prefix="/api")
+app.include_router(purpose.router, prefix="/api")
