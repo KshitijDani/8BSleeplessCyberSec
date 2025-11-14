@@ -4,7 +4,7 @@ Current State: The purpose of this code is to help me understand how to build an
 
 Next State: First re architect the code using LangGraph. My project is a serious agent we defined steps and possible multiple calls to the LLM model. Additionally, there are well defined steps and there might be times where i want flexbility in the next step to goto. Therefore, I need a framework that handles state management. In LangGraph I can explicitly state the different steps as nodes. So we can have a node for github repo fetching, one for extraction, one for analysing files, storing outputs, etc. 
 
-Next, understand what exactly is required to call the endpoints we've extracted and call them while the targeted app is running. Then try to find and test any vulnerabilities in the app.
+Next, understand what exactly is required to call the endpoints we've extracted and call them while the targeted app is running. Then try to find and test any vulnerabilities in the app. Use CVSS scores to report to end users the scale of the vulnerability
 
 
 *run uvicorn app.main:app --reload to start the app from the root directory.
