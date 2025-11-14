@@ -11,6 +11,7 @@ from app.graph.nodes_dir.save_output_node import save_output_node
 def build_graph():
     graph = StateGraph(AnalysisState)
     
+    # TO-DO: create a seprate intialize_nodes() to add all nodes and then call the method here
     graph.add_node("start", start_node)
     graph.add_node("fetch_repo", fetch_repo_node)
     graph.add_node("cleanup", cleanup_node)
