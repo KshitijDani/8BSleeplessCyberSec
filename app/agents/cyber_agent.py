@@ -54,7 +54,7 @@ class CyberAgent:
     def extract_routes(self, file_name, file_content: str) -> str:
         print("Extracting routes for: ", file_name)
         response = self.client.chat.completions.create(
-            model="gpt-5",#"gpt-4o-mini",
+            model="gpt-4o-mini",
             messages=[
                 {
                     "role": "system",

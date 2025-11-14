@@ -1,6 +1,8 @@
 from langgraph.graph import StateGraph
 from app.graph.state import AnalysisState
-from app.graph.nodes import start_node, fetch_repo_node, cleanup_node
+from app.graph.nodes_dir.start_node import start_node
+from app.graph.nodes_dir.fetch_repo_node import fetch_repo_node
+from app.graph.nodes_dir.cleanup_node import cleanup_node
 from app.graph.nodes_dir.extract_php_files_node import extract_php_files_node
 from app.graph.nodes_dir.analyze_files_node import analyze_file_node
 from app.graph.nodes_dir.save_output_node import save_output_node
