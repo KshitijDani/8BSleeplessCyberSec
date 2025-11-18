@@ -9,6 +9,7 @@ in the [analyze_files] node we use OpenAI's Completions API to make calls to a g
 1. Update the prompt and file to add more security vulnerability field (eg: OWASP top 10, etc).
 2. Expand analysis to beyonf PHP files.
 3. Add security measures on this app. Certificate, login creds.
+4. Update agent to use MCP.
 
 **Running the app locally:**
 1. *run uvicorn app.main:app --reload to start the app from the root directory.
