@@ -15,7 +15,7 @@
 
 in the [analyze_files] node we use OpenAI's Completions API to make calls to a gpt-4o-mini LLM model. In the app itself, we pass the link to a publically accessible **github repo**. The app then parses all **php** files in the repo and fetches all possible security vulnerabilities associated with the endpoints or actions in th file. It the stores the vulnerabilities in an output file in app/output_action. to view the latest run's endpoints goto **http://127.0.0.1:8000/api/latest-routes**.
 
-**Next State: **
+**Next State:**
 1. Update the prompt and file to add more security vulnerability field (eg: OWASP top 10, etc).
 2. Expand analysis to beyonf PHP files.
 3. Add security measures on this app. Certificate, login creds.
