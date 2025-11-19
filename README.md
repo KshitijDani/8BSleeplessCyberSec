@@ -13,7 +13,7 @@ in the [analyze_files] node we use OpenAI's Completions API to make calls to a g
 
 **Running the backend app locally:**
 1. *run uvicorn app.main:app --reload to start the app from the root directory.
-2. *Open http://127.0.0.1:8000/purpose to see purpose of this project
+2. *Open http://127.0.0.1:8000/api/purpose to see purpose of this project
 3. once the app is running locally, pass the repo link you want to analyse
 **curl -X POST http://127.0.0.1:8000/api/run-graph \
   -H "Content-Type: application/json" \
