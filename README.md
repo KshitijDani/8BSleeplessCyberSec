@@ -28,3 +28,6 @@ First time run:
 3. run npm run dev to start the server. It will run at http://localhost:5173
 4. Input the Github link of the repo that you want to analyze
 5. view results at http://localhost:5173/results
+
+<img width="1440" height="900" alt="Screenshot 2025-11-18 at 20 25 29" src="https://github.com/user-attachments/assets/0a6b443a-edfb-42b3-9c1a-9e7fc1e4ffc5" />
+
