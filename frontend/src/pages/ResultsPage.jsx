@@ -5,16 +5,32 @@ export default function ResultsPage() {
   const [fileName, setFileName] = useState("");
 
   useEffect(() => {
-    // TO-DO: Cleanup and pass URL as a variable.
-    async function fetchResults() {
-      const res = await fetch("http://127.0.0.1:8000/api/latest-vulnerabilities");
-      const data = await res.json();
-      setRows(data.results || []);
-      setFileName(data.file || "Unknown");
-    }
+  async function fetchResults() {
+    const res = await fetch("http://127.0.0.1:8000/api/latest-vulnerabilities");
+    const data = await res.json();
 
-    fetchResults();
-  }, []);
+    // clean this up and mvoe to its own function for sorting
+    const severityOrder = {
+      "Critical": 4,
+      "High": 3,
+      "Medium": 2,
+      "Low": 1,
+      "Info": 0,
+    };
+
+    const sorted = (data.results || []).sort((a, b) => {
+      const sa = severityOrder[a.severity] ?? -1;
+      const sb = severityOrder[b.severity] ?? -1;
+      return sb - sa; // higher severity first
+    });
+
+    setRows(sorted);
+    setFileName(data.file || "Unknown");
+  }
+
+  fetchResults();
+}, []);
+
 
   return (
     <div

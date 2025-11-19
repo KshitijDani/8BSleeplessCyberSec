@@ -32,7 +32,7 @@ Your tasks:
    - XSS payload: "<script>alert(1)</script>"
 
 4. For EACH row include:
-   - file_name
+   - file_name and file path
    - api                (the endpoint detected)
    - attack_type        (SQL Injection, XSS, CSRF, Input Validation, etc.)
    - payload            (ONE payload per row; repeat rows if multiple)
@@ -52,7 +52,7 @@ Each object MUST have these exact fields:
 
 [
   {
-    "file_name": "<file>",
+    "file_name": "<file_path>",
     "api": "<detected route>",
     "attack_type": "<SQL Injection | XSS | ...>",
     "payload": "<single concrete payload>",
