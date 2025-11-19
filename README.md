@@ -11,7 +11,7 @@ in the [analyze_files] node we use OpenAI's Completions API to make calls to a g
 3. Add security measures on this app. Certificate, login creds.
 4. Update agent to use MCP.
 
-**Running the app locally:**
+**Running the backend app locally:**
 1. *run uvicorn app.main:app --reload to start the app from the root directory.
 2. *Open http://127.0.0.1:8000/purpose to see purpose of this project
 3. once the app is running locally, pass the repo link you want to analyse
@@ -19,3 +19,12 @@ in the [analyze_files] node we use OpenAI's Completions API to make calls to a g
   -H "Content-Type: application/json" \
   -d '{"repo_url": "<<\github repo link>>"}'**
 4. To see vulnerabilities idenified in JSON format, open **http://127.0.0.1:8000/api/latest-vulnerabilities**
+
+
+**Running the frontend app locally:**
+First time run:
+1. cd into 8BSleeplessCyberSec/frontend
+2. **run npm install** to install necessary packages
+3. run npm run dev to start the server. It will run at http://localhost:5173
+4. Input the Github link of the repo that you want to analyze
+5. view results at http://localhost:5173/results
