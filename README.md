@@ -39,13 +39,12 @@ We start by fetching all code files in a repo, analyze each file for vulnerabili
 
 ## Running the Backend App Locally
 
-1. Run:
+1.  cd into **8BSleeplessCyberSec/app**
+    Run:
 
    ```
    uvicorn app.main:app --reload
    ```
-
-   from the root directory.
 2. Open **[http://127.0.0.1:8000/api/purpose](http://127.0.0.1:8000/api/purpose)** to see purpose of this project.
 3. Once the app is running locally, input a publically accessible github repo link you want to analyse:
 
@@ -64,12 +63,24 @@ We start by fetching all code files in a repo, analyze each file for vulnerabili
 ### First Time Installation
 
 1. `cd` into **8BSleeplessCyberSec/frontend**
-2. Run **npm install** to install necessary packages
+2. Run
+   
+   ```
+   npm install
+   ```
+   to install necessary packages
 
 ### Running the app
-1. Run **npm run dev** to start the server ([http://localhost:5173](http://localhost:5173))
-2. Input the Github link of the repo that you want to analyze
-3. View results at **[http://localhost:5173/results](http://localhost:5173/results)**
+1. Run
+   
+   ```
+   npm run dev
+   ```
+  to start the server ([http://localhost:5173](http://localhost:5173)).
+  
+2. Input the Github link of the repo that you want to analyze.
+   
+3. View results at **[http://localhost:5173/results](http://localhost:5173/results)**.
 
 ---
 
