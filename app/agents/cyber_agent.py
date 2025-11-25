@@ -64,7 +64,10 @@ class CyberAgent:
                     "role": "system",
                     "content": security_analysis_system_prompt
                 },
-                {"role": "user", "content": file_content}
+                {
+                    "role": "user",
+                    "content": f"FILE_PATH: {file_name}\n\nFILE_CONTENT:\n{file_content}"
+                }
             ]
         )
         
