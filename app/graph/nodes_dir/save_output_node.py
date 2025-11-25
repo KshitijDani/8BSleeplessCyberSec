@@ -1,6 +1,7 @@
 import os
 import csv
 from datetime import datetime
+from app.graph.constants import VULNERABILITY_FIELDNAMES
 
 def save_output_node(state):
     vulnerabilities = state.get("vulnerabilities", [])
@@ -19,24 +20,14 @@ def save_output_node(state):
 
     print(f"[save_output_node] Writing {len(vulnerabilities)} rows to: {output_path}")
 
-    # FORCE the correct CSV column order
-    fieldnames = [
-        "file_name",
-        "api",
-        "attack_type",
-        "payload",
-        "severity",
-        "remediation"
-    ]
-
     # Write CSV
     with open(output_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=VULNERABILITY_FIELDNAMES)
         writer.writeheader()
 
         for entry in vulnerabilities:
             # Ensure missing fields don't break the CSV
-            row = {key: entry.get(key, "") for key in fieldnames}
+            row = {key: entry.get(key, "") for key in VULNERABILITY_FIELDNAMES}
             writer.writerow(row)
 
     # Save output path into state

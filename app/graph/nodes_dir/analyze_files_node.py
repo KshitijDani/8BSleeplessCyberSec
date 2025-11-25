@@ -1,7 +1,8 @@
-from app.agents.cyber_agent import CyberAgent
-from openai import RateLimitError
 import json
 import time
+from app.agents.cyber_agent import CyberAgent
+from app.graph.constants import VULNERABILITY_FIELDNAMES
+from openai import RateLimitError
 
 agent = CyberAgent()   # reuse your existing agent
 
@@ -52,7 +53,12 @@ def analyze_file_node(state):
             vulns = json.loads(cleaned)
 
             if isinstance(vulns, list):
-                all_vulns.extend(vulns)
+                for vuln in vulns:
+                    if not isinstance(vuln, dict):
+                        print(f"[analyze_file_node] Skipping non-dict entry in {file_path}: {vuln}")
+                        continue
+                    normalized_vuln = {field: vuln.get(field, "") for field in VULNERABILITY_FIELDNAMES}
+                    all_vulns.append(normalized_vuln)
             else:
                 print(f"[analyze_file_node] Unexpected format (not a list) in file: {file_path}")
 
