@@ -39,7 +39,12 @@ We start by fetching all code files in a repo, analyze each file for vulnerabili
 
 ## Running the Backend App Locally
 
-1.  cd into **8BSleeplessCyberSec/app**
+1. Make sure to add your open AI API key to path in the terminal. In the terminal run:
+```
+export OPENAI_API_KEY="<<YOUR API KEY>>"
+```
+
+2.  cd into **8BSleeplessCyberSec/app**
     Run:
 
    ```
