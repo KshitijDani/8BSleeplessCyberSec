@@ -1,8 +1,19 @@
 import { useEffect, useState, useMemo } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function ResultsPage() {
   const [rows, setRows] = useState([]);
   const [fileName, setFileName] = useState("");
+  const [chartData, setChartData] = useState([]);
 
   const [sortConfig, setSortConfig] = useState({
     key: null,
@@ -19,10 +30,35 @@ export default function ResultsPage() {
 
   useEffect(() => {
     async function fetchResults() {
-      const res = await fetch("http://127.0.0.1:8000/api/latest-vulnerabilities");
-      const data = await res.json();
-      setRows(data.results || []);
-      setFileName(data.file || "Unknown");
+      // Fetch formatted data for the chart
+      const chartRes = await fetch("http://127.0.0.1:8000/api/formatted-vulnerabilities");
+      const chartData = await chartRes.json();
+
+      // Fetch detailed data for the table
+      const tableRes = await fetch("http://127.0.0.1:8000/api/latest-vulnerabilities");
+      const tableData = await tableRes.json();
+
+      setRows(tableData.results || []);
+      setFileName(tableData.file || "Unknown");
+
+      // Process data for chart: count bugs per file
+      if (chartData.results) {
+        const bugCountMap = {};
+        chartData.results.forEach((item) => {
+          const fileName = item["file name"] || "Unknown";
+          bugCountMap[fileName] = (bugCountMap[fileName] || 0) + 1;
+        });
+
+        // Convert to chart data format
+        const chartDataArray = Object.entries(bugCountMap).map(
+          ([fileName, count]) => ({
+            name: fileName.split("/").pop() || fileName, // Show only filename, not full path
+            bugs: count,
+          })
+        );
+
+        setChartData(chartDataArray);
+      }
     }
     fetchResults();
   }, []);
@@ -108,6 +144,26 @@ export default function ResultsPage() {
       <p style={{ marginBottom: "30px", opacity: 0.85 }}>
         <strong>Latest Report:</strong> {fileName}
       </p>
+
+      {/* Bar Chart Section */}
+      <div style={{ width: "100%", maxWidth: "1200px", marginBottom: "40px" }}>
+        <h2 style={{ marginBottom: "20px" }}>Bugs per File</h2>
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="name"
+              angle={-45}
+              textAnchor="end"
+              height={100}
+            />
+            <YAxis label={{ value: "Number of Bugs", angle: -90, position: "insideLeft" }} />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="bugs" fill="#8884d8" name="Bug Count" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
 
       <div style={{ width: "100%", maxWidth: "1200px" }}>
         <table style={{ width: "100%", cursor: "pointer" }}>
