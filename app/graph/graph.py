@@ -6,6 +6,7 @@ from app.graph.nodes_dir.cleanup_node import cleanup_node
 from app.graph.nodes_dir.extract_php_files_node import extract_php_files_node
 from app.graph.nodes_dir.analyze_files_node import analyze_file_node
 from app.graph.nodes_dir.save_output_node import save_output_node
+from app.graph.nodes_dir.create_output_table_node import create_output_table
 
 
 def build_graph():
@@ -18,6 +19,7 @@ def build_graph():
     graph.add_node("extract_php_files_node", extract_php_files_node)
     graph.add_node("analyze_file_node", analyze_file_node)
     graph.add_node("save_output_node", save_output_node)
+    graph.add_node("create_output_table_node", create_output_table)
 
 
     graph.set_entry_point("start")
@@ -25,9 +27,8 @@ def build_graph():
     graph.add_edge("fetch_repo", "extract_php_files_node")
     graph.add_edge("extract_php_files_node", "analyze_file_node")
     graph.add_edge("analyze_file_node", "save_output_node")
-
-    # this edge needs to ochange to whatever the second last node is
-    graph.add_edge("save_output_node", "cleanup")
+    graph.add_edge("save_output_node", "create_output_table_node")
+    graph.add_edge("create_output_table_node", "cleanup")
 
     workflow = graph.compile()
     return workflow

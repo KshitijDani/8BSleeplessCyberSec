@@ -17,7 +17,7 @@ def analyze_file_node(state):
     print(f"[analyze_file_node] Analyzing {len(php_files)} PHP files...")
 
     # TO-DO: move configurations to a separtae config file from where we read. Generalize it.
-    MAX_FILES = 2  # Set to an int to limit files during testing; None processes all.
+    MAX_FILES = 1  # Set to an int to limit files during testing; None processes all.
     files_to_process = php_files if MAX_FILES is None else php_files[:MAX_FILES]
 
     def process_file(file_path: str):
